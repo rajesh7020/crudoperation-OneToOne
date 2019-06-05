@@ -1,0 +1,606 @@
+pom.xml
+----------------------------------------------------------------------------------------------------------------------------
+<dependencies>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-beans</artifactId>
+		    <version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		    <version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-web</artifactId>
+		    <version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-orm</artifactId>
+		    <version>${org.springframework.version}</version>
+		</dependency>
+		<!-- Hibernate Resources -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-entitymanager</artifactId>
+		    <version>5.3.7.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>4.3.0.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-commons-annotations</artifactId>
+		    <version>3.3.0.ga</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-annotations</artifactId>
+		    <version>3.3.1.GA</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>3.3.2.GA</version>
+		</dependency>
+		<dependency>
+		    <groupId>taglibs</groupId>
+		    <artifactId>standard</artifactId>
+		    <version>1.1.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+		<dependency>
+		    <groupId>javax.persistence</groupId>
+		    <artifactId>javax.persistence-api</artifactId>
+		    <version>2.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-dbcp</groupId>
+		    <artifactId>commons-dbcp</artifactId>
+		    <version>20030825.184428</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-pool</groupId>
+		    <artifactId>commons-pool</artifactId>
+		    <version>20030825.183949</version>
+		</dependency>
+		<!-- MYSQL DB -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.12</version>
+		</dependency>
+		<!-- Log4j -->
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.14</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		</dependencies>
+		
+------------------------------------------------------------------------------------------------------------------------<!--<!-- 
+
+https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.2.5</version>
+</dependency>
+
+		
+	
+----------------------------------------------------------------------------------------------------------------------------
+User.java	
+-----------------------------------------------------------------------------------------------------------------------------
+package com.rajesh.model;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
+public class User {
+	@Id
+	@Column(name="userid")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int userid;
+	@Column(name="shopname")
+	private String shopname;
+	@Column(name="name")
+	private String name;
+	@Column(name="email")
+	private String email;
+	@Column(name="password")
+	private String password;
+	@Column(name="mobileno")
+	private long mobileno;
+	@Column(name="address")
+	private String address;
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public String getShopname() {
+		return shopname;
+	}
+	public void setShopname(String shopname) {
+		this.shopname = shopname;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public long getMobileno() {
+		return mobileno;
+	}
+	public void setMobileno(long mobileno) {
+		this.mobileno = mobileno;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+UserDao.java - Interface
+---------------------------------------------------------------------------------------------------------------------------
+package com.rajesh.dao;
+import java.util.List;
+import com.rajesh.model.User;
+
+public interface UserDao {
+	public void addUser(User user);
+	public List<User> getUsers();
+	public User getUser(int userid);
+	public void deleteUser(int userid);
+	
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------
+UserDaoImpl.java
+----------------------------------------------------------------------------------------------------------------------------
+package com.rajesh.daoImpl;
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.rajesh.dao.UserDao;
+import com.rajesh.model.User;
+
+@Repository
+public class UserDaoImpl implements UserDao{
+	@Autowired
+	SessionFactory sessionFactory;
+	@Override
+	public void addUser(User user) {
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getUsers() {
+		return (List<User>)sessionFactory.getCurrentSession().createCriteria(User.class).list();
+	}
+	@Override
+	public User getUser(int userid) {
+		return (User)sessionFactory.getCurrentSession().get(User.class, userid);
+	}
+	@Override
+	public void deleteUser(int userid) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM User WHERE userid="+userid).executeUpdate();
+	}	
+}
+
+----------------------------------------------------------------------------------------------------------------------------
+UserService.java - Interface
+----------------------------------------------------------------------------------------------------------------------------
+package com.rajesh.service;
+import java.util.List;
+import com.rajesh.model.User;
+
+public interface UserService {
+	public void addUser(User user);
+	public List<User> getUsers();
+	public User getUser(int userid);
+	public void deleteUser(int userid);
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+UserServiceImpl.java
+---------------------------------------------------------------------------------------------------------------------------
+package com.rajesh.serviceImpl;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rajesh.dao.UserDao;
+import com.rajesh.model.User;
+import com.rajesh.service.UserService;
+@Service
+@Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
+public class UserServiceImpl implements UserService {
+	@Autowired
+	UserDao userDao;
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void addUser(User user) {
+		userDao.addUser(user);
+	}
+	@Override
+	public List<User> getUsers() {
+		return userDao.getUsers();
+	}
+	@Override
+	public User getUser(int userid) {
+		return userDao.getUser(userid);
+	}
+	@Override
+	public void deleteUser(int userid) {
+		userDao.deleteUser(userid);
+	}
+	
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------
+UserController.java
+----------------------------------------------------------------------------------------------------------------------------
+package com.rajesh.controller;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import com.rajesh.model.User;
+import com.rajesh.service.UserService;
+
+@Controller
+public class UserController {
+	
+	@Autowired
+	private UserService userService;
+	@RequestMapping(value="/saveUser", method=RequestMethod.POST)
+	public ModelAndView saveUser(@ModelAttribute("command") User user, BindingResult result) {
+		userService.addUser(user);
+		return new ModelAndView("redirect:addUser.html");
+	}
+	@RequestMapping(value="/addUser", method=RequestMethod.GET)
+	public ModelAndView addUser(@ModelAttribute("command") User user, BindingResult result) {
+		Map<String, Object> model = new HashMap<String,Object>();
+		model.put("users", userService.getUsers());
+		return new ModelAndView("addUser",model);
+	}
+	@RequestMapping(value="/editUser", method=RequestMethod.GET)
+	public ModelAndView editUser(@ModelAttribute("command") User user, BindingResult result) {
+		Map<String, Object> model = new HashMap<String,Object>();
+		model.put("user", userService.getUser(user.getUserid()));
+		model.put("users", userService.getUsers());
+		return new ModelAndView("addUser",model);
+	}
+	@RequestMapping(value="/deleteUser", method=RequestMethod.GET)
+	public ModelAndView deleteUser(@ModelAttribute("command") User user, BindingResult result) {
+		userService.deleteUser(user.getUserid());
+		Map<String, Object> model = new HashMap<String,Object>();
+		model.put("users", userService.getUsers());
+		return new ModelAndView("addUser",model);
+	}
+	@RequestMapping(value="/users",method=RequestMethod.GET)
+	public List<User> getUsers(){
+		return userService.getUsers();
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------
+hibernate.cfg.xml - src/main/resources
+----------------------------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"> 
+<hibernate-configuration>
+    <session-factory>        
+        <mapping class="com.rajesh.model.User" />
+    </session-factory>         
+</hibernate-configuration>
+
+----------------------------------------------------------------------------------------------------------------------------
+log4j.xml - src/main/resources
+----------------------------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+    <appender name="util" class="org.apache.log4j.FileAppender">
+        <param name="File" value="C:\\ITLab\\logs\\GeneralLogs.log" />
+        <param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%t %-5p %c{2} - %m%n"/>
+        </layout>           
+     </appender>
+	<!-- Application Loggers -->
+	<logger name="com.hp.gcc">
+		<level value="info" />
+	</logger>
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root>
+</log4j:configuration>
+
+-----------------------------------------------------------------------------------------------------------------------------
+jdbc.properties - WEB-INF
+-----------------------------------------------------------------------------------------------------------------------------
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.dialect=org.hibernate.dialect.MySQLDialect
+jdbc.databaseurl=jdbc:mysql://localhost:3306/userdatabase
+jdbc.username=root
+jdbc.password=rays@123
+
+-------------------------------------------------------------------
+postgresql configuration for database connection 
+----------------------------------------------------------------------
+jdbc.driverClassName=org.postgresql.Driver 
+jdbc.dialect=org.hibernate.dialect.PostgreSQLDialect
+jdbc.databaseurl=jdbc:postgresql://localhost:3306/userdatabase
+jdbc.username=root
+jdbc.password=rays@123
+
+----------------------------------------------------------------------------------------------------------------------------
+spring-servlet.xml - WEB-INF
+----------------------------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	<context:annotation-config />
+	<context:component-scan base-package="com.rajesh" />	
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		p:location="/WEB-INF/jdbc.properties" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close"
+    	 p:driverClassName="${jdbc.driverClassName}"
+		p:url="${jdbc.databaseurl}" 
+		p:username="${jdbc.username}" 
+		p:password="${jdbc.password}" />
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<property name="configurationClass">
+			<value>org.hibernate.cfg.AnnotationConfiguration</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	    <property name="prefix" value="/WEB-INF/jsp/"/>
+	    <property name="suffix" value=".jsp"/>
+	</bean>
+	<tx:annotation-driven/>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+</beans>
+
+-----------------------------------------------------------------------------------------------------------------------------
+web.xml - WEB-INF
+-----------------------------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>CrudOperation-OneToOne</display-name>
+  <context-param>
+	<param-name>log4jConfigLocation</param-name>
+	<param-value>classpath:log4j.xml</param-value>
+  </context-param>
+  <listener>
+	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <servlet>
+	<servlet-name>spring</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring-servlet.xml</param-value>
+        </init-param>
+	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>spring</servlet-name>
+	<url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>addUser.html</welcome-file>
+  </welcome-file-list>
+</web-app>
+
+----------------------------------------------------------------------------------------------------------------------------
+addUser.jsp - WEB-INF/jsp/
+----------------------------------------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>User Management</title>
+</head>
+<body><center>
+	<h2>User Data</h2>
+	<form:form action="/CrudApp/saveUser.html" method="POST">
+		<table>
+			<tr>
+				<td><form:label path="userid">User Id :</form:label></td>
+				<td><form:input path="userid" readonly="true"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="shopname">Shop Name :</form:label></td>
+				<td><form:input path="shopname" value="${user.shopname}"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="name">Person Name :</form:label></td>
+				<td><form:input path="name" value="${user.name}"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="email">Email :</form:label></td>
+				<td><form:input path="email" value="${user.email}"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="password">Password :</form:label></td>
+				<td><form:input path="password" type="password" value="${user.password}"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="mobileno">Mobile No :</form:label></td>
+				<td><form:input path="mobileno" value="${user.mobileno}"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="address">Address :</form:label></td>
+				<td><form:input path="address" type="textarea" value="${user.address}"/></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" value="Save"></td>
+			</tr>
+		</table>
+	</form:form>
+	<br/>
+	<c:if test="${!empty users }">
+		<table align="center" border="1">
+			<tr>
+				<th>User Id</th>
+				<th>Shop Name</th>
+				<th>Person Name</th>
+				<th>Email</th>
+				<th>Mobile</th>
+				<th>Address</th>
+				<th>Actions</th>
+			</tr>
+		<c:forEach items="${users}" var="user">
+			<tr>
+				<td><c:out value="${user.userid}"></c:out></td>
+				<td><c:out value="${user.shopname}"></c:out></td>
+				<td><c:out value="${user.name}"></c:out></td>
+				<td><c:out value="${user.email}"></c:out></td>
+				<td><c:out value="${user.mobileno}"></c:out></td>
+				<td><c:out value="${user.address}"></c:out></td>
+				<td align="center"><a href="editUser.html?userid=${user.userid}">Edit</a> | <a href="deleteUser.html?userid=${user.userid}">Delete</a></td>
+			</tr>
+		</c:forEach>
+		</table>
+	</c:if>
+</center>
+
+</body>
+</html>
+
