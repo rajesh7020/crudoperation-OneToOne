@@ -749,12 +749,12 @@ addUser.jsp - WEB-INF/jsp/
 			}
 	    	
 	    	$('#btnSave').click(function() {
-	    		var shopname_err = true;
-		    	var name_err = true;
-		    	var email_err = true;
-		    	var pass_err = true;
-		    	var mobile_err = true;
-		    	var address_err = true;
+	    		shopname_err = true;
+		    	name_err = true;
+		    	email_err = true;
+		    	pass_err = true;
+		        mobile_err = true;
+		        address_err = true;
 		    	shopname_check();
 		    	personName_chk();
 		    	email_chk();
@@ -767,6 +767,14 @@ addUser.jsp - WEB-INF/jsp/
 		    		return false;
 		    	}
 			});
+	    	
+	    	$('.reset-btn').click(function() {
+	    		reset_chk();	
+	    	});
+	    	
+	    	function reset_chk() {
+	    		$("#myForm").trigger("reset");
+			}
 		});	
 	</script>
 	<script>
@@ -784,7 +792,7 @@ addUser.jsp - WEB-INF/jsp/
 	<div class="container">
 	<h2 class="text-warning" align="center">User Data</h2>
 	<div class="col-lg-5 m-auto d-block">
-		<form:form action="/CrudApp/saveUser.html" method="POST">	
+		<form:form action="/CrudApp/saveUser.html" method="POST" id="myForm">	
 			<div class="form-group">
 				<form:label path="userid">User Id :</form:label>
 				<form:input path="userid" readonly="true" id="userid" class="form-control"/>
@@ -821,7 +829,7 @@ addUser.jsp - WEB-INF/jsp/
 				<small id="addresschk"></small>
 			</div>
 				<input type="submit" value="Save" id="btnSave" class="btn btn-primary">
-				<input type="submit" value="Reset" id="btnReset" class="btn btn-danger">
+				<input type="submit" value="Reset" id="btnReset" class="btn btn-danger reset-btn">
 		</form:form>
 	</div>		
 	</div>
