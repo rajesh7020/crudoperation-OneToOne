@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"> 
+<hibernate-configuration>
+    <session-factory>        
+        <mapping class="com.rojmat.entity.BaseEntity"/>
+        <mapping class="com.rojmat.entity.User"/>
+        <mapping class="com.rojmat.entity.Credit"/>
+        <mapping class="com.rojmat.entity.Debit"/>
+        <mapping class="com.rojmat.entity.Category"/>
+        <mapping class="com.rojmat.entity.Product"/>
+        <mapping class="com.rojmat.entity.Unit"/>
+        <mapping class="com.rojmat.entity.Gst"/>
+        <mapping class="com.rojmat.entity.PaymentType"/>
+        <mapping class="com.rojmat.entity.SalesPayment"/>
+        <mapping class="com.rojmat.entity.PurchasePayment"/>
+        <mapping class="com.rojmat.entity.State"/>
+        <mapping class="com.rojmat.entity.Supplier"/>
+        <mapping class="com.rojmat.entity.Customer"/>
+    </session-factory>         
+</hibernate-configuration>
