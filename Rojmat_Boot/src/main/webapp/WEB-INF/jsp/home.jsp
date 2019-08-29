@@ -686,7 +686,7 @@
    			<div class="modal fade" id="loginmodal" >
    				<div class="modal-dialog modal-dialog-centered">
    					<div class="modal-content">
-   						<form commandName="userLogin" action="${pageContext.request.contextPath}/user/login" method="POST">
+   						<form commandName="command" action="${pageContext.request.contextPath}/user/login" method="POST">
    						<div class="modal-header">
    							<h3 class="text-center">Login</h3>
    				 				<button type="button" class="close" id="btnClose" data-dismiss="modal"> &times;</button>

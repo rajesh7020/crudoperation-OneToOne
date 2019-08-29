@@ -1,4 +1,5 @@
 package com.rajesh.controller;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.rajesh.model.Credit;
 import com.rajesh.model.User;
 import com.rajesh.service.UserService;
 
@@ -37,9 +40,24 @@ public class UserController {
             return "home";
         }
     }
-	/*
-	 * @PostMapping("/login") public String doLogin(ModelMap
-	 * model,@ModelAttribute(value="userLogin")User user,HttpSession session) {
-	 * return "userdashboard"; }
-	 */
+	
+	@PostMapping("/user/login") 
+	public String doLogin(ModelMap model, @ModelAttribute("command")User user,HttpSession session) {
+		  	if(userService.loginUser(user.getEmail(), user.getPassword()) != null) {
+		  		session.setAttribute("email",user.getEmail());
+		  		model.addAttribute("sucessLogin", "You are login sucessfully");
+		  		System.out.println("You are login sucessfully"+user.getEmail());
+		  		return "redirect:userdashboard";
+		  	}else {
+		  		System.out.println("Invalid Email/Password");
+				model.put("failed", "Invalid Email/Password");
+				return "home";
+		  	}
+	}
+	@GetMapping("user/userdashboard")
+	public String showUserAccount(@ModelAttribute("command")Credit credit, BindingResult br, HttpSession session) {
+		/*Map<String,Object> model = new HashMap<String,Object>();
+		model.put("creditdebitlist", creditService.getAllCreditDebit());*/
+		return "userdashboard";
+	} 
 }
